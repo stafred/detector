@@ -3,13 +3,13 @@
 namespace Detector;
 
 /**
- * Class ExceptionHandler
+ * Class RegisterShutdown
  * @package Detector
  */
-class ExceptionHandler
+class RegisterShutdown
 {
     /**
-     * ExceptionHandler constructor.
+     * RegisterShutdown constructor.
      */
     public function __construct()
     {

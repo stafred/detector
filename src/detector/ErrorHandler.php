@@ -6,7 +6,7 @@ namespace Detector;
  * Class ErrorHandler
  * @package Detector
  */
-class ErrorHandler
+final class ErrorHandler
 {
     /**
      * ErrorHandler constructor.
