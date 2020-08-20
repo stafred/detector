@@ -9,17 +9,15 @@
         }
     ],
     "autoload": {
-        "autoload": {
-            "psr-4": {
-                "Detector\\": "src/detector/"
-            },
-            "classmap": [
-                "src/detector/"
-            ],
-            "files": [
+        "psr-4": {
+            "Detector\\": "src/detector/"
+        },
+        "classmap": [
+            "src/detector/"
+        ],
+        "files": [
 
-            ]
-        }
+        ]
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
