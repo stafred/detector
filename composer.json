@@ -1,0 +1,29 @@
+{
+    "name": "stafred/detector",
+    "description": "Error Detedctor",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Stafred",
+            "email": "stafred.framework@gmail.com"
+        }
+    ],
+    "autoload": {
+        "autoload": {
+            "psr-4": {
+                "Detector\\": "src/detector/"
+            },
+            "classmap": [
+                "src/detector/"
+            ],
+            "files": [
+
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": "7.3.*"
+    }
+}
