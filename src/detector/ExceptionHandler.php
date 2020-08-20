@@ -1,14 +1,15 @@
 <?php
+
 namespace Detector;
 
 /**
- * Run Detector for Activate Filp/Whoops
+ * Class ExceptionHandler
  * @package Detector
  */
-final class Run
+class ExceptionHandler
 {
     /**
-     * Run constructor.
+     * ExceptionHandler constructor.
      */
     public function __construct()
     {
