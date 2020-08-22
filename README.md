@@ -14,12 +14,12 @@ about the error, permission to start the debugger, or part of a subroutine.
 
 # Example
 <pre>
-        $detector = new \Detector\Run;
-        $detector->setErrorDebug(your_constant_or_value);
-        $detector->setErrorInfo(your_constant_or_value);
-        $detector->setErrorNameLog(your_constant_or_value);
-        $detector->setErrorPathLog(your_constant_or_value);
-        $detector->make(function(){
-            your_handler_or_code
-        });
+$detector = new \Detector\Run;
+$detector->setErrorDebug(your_constant_or_value);
+$detector->setErrorInfo(your_constant_or_value);
+$detector->setErrorNameLog(your_constant_or_value);
+$detector->setErrorPathLog(your_constant_or_value);
+$detector->make(function(){
+     your_handler_or_code
+});
 </pre>
