@@ -12,7 +12,7 @@ specify the settings to run: the path to the folder with the error log,
 the name of the error log file, permission to display brief information 
 about the error, permission to start the debugger, or part of a subroutine.
 
-#Methods
+# Methods
 
 <pre>
 ->setErrorDebug(...) 
@@ -56,7 +56,7 @@ $detector->make(function(){
 });
 </pre>
 
-#Timing
+# Timing
 <pre>
 APP_DEBUG = false : max response 0.009 sec
 APP_DEBUG = true  : max response 0.014 sec (+55%)
