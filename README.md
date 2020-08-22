@@ -14,26 +14,12 @@ about the error, permission to start the debugger, or part of a subroutine.
 
 # Example
 <pre>
-$detector = new \Detector\Run;
-$detector->setErrorDebug(your_constant_or_value);
-$detector->setErrorInfo(your_constant_or_value);
-$detector->setErrorNameLog(your_constant_or_value);
-$detector->setErrorPathLog(your_constant_or_value);
-$detector->make(function(){
-     your_handler_or_code
-});
-</pre>
-
-# Example With Package Filp\Whoops
-<pre>
-$detector = new \Detector\Run;
-$detector->setErrorDebug('APP_DEBUG');
-$detector->setErrorInfo('ERROR_INFO');
-$detector->setErrorNameLog('ERROR_NAME_LOG');
-$detector->setErrorPathLog('ERROR_PATH_LOG');
-$detector->make(function(){
-     $whoops = new \Whoops\Run;
-     $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
-     $whoops->register();
-});
+        $detector = new \Detector\Run;
+        $detector->setErrorDebug(your_constant_or_value);
+        $detector->setErrorInfo(your_constant_or_value);
+        $detector->setErrorNameLog(your_constant_or_value);
+        $detector->setErrorPathLog(your_constant_or_value);
+        $detector->make(function(){
+            your_handler_or_code
+        });
 </pre>
