@@ -30,7 +30,7 @@ about the error, permission to start the debugger, or part of a subroutine.
 ->make(...) 
 </pre>
 
-# Example (timing: 0.009)
+# Example 
 <pre>
 $detector = new \Detector\Run;
 $detector->setErrorDebug(your_constant_or_value);
@@ -42,7 +42,7 @@ $detector->make(function(){
 });
 </pre>
 
-# Example With Package Filp\Whoops (timing: 0.014 +56%)
+# Example With Package Filp\Whoops 
 <pre>
 $detector = new \Detector\Run;
 $detector->setErrorDebug('APP_DEBUG');
