@@ -23,3 +23,17 @@ $detector->make(function(){
      your_handler_or_code
 });
 </pre>
+
+# Example With Package Filp\Whoops
+<pre>
+$detector = new \Detector\Run;
+$detector->setErrorDebug('APP_DEBUG');
+$detector->setErrorInfo('ERROR_INFO');
+$detector->setErrorNameLog('ERROR_NAME_LOG');
+$detector->setErrorPathLog('ERROR_PATH_LOG');
+$detector->make(function(){
+     $whoops = new \Whoops\Run;
+     $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
+     $whoops->register();
+});
+</pre>
