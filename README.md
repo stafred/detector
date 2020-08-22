@@ -12,14 +12,52 @@ specify the settings to run: the path to the folder with the error log,
 the name of the error log file, permission to display brief information 
 about the error, permission to start the debugger, or part of a subroutine.
 
-# Example
+#Methods
+
 <pre>
-        $detector = new \Detector\Run;
-        $detector->setErrorDebug(your_constant_or_value);
-        $detector->setErrorInfo(your_constant_or_value);
-        $detector->setErrorNameLog(your_constant_or_value);
-        $detector->setErrorPathLog(your_constant_or_value);
-        $detector->make(function(){
-            your_handler_or_code
-        });
+->setErrorDebug(...) 
+</pre>
+<pre>
+->setErrorInfo(...) 
+</pre>
+<pre>
+->setErrorNameLog(...) 
+</pre>
+<pre>
+->setErrorPathLog(...) 
+</pre>
+<pre>
+->make(...) 
+</pre>
+
+# Example (timing: 0.009)
+<pre>
+$detector = new \Detector\Run;
+$detector->setErrorDebug(your_constant_or_value);
+$detector->setErrorInfo(your_constant_or_value);
+$detector->setErrorNameLog(your_constant_or_value);
+$detector->setErrorPathLog(your_constant_or_value);
+$detector->make(function(){
+     your_handler_or_code
+});
+</pre>
+
+# Example With Package Filp\Whoops (timing: 0.014 +56%)
+<pre>
+$detector = new \Detector\Run;
+$detector->setErrorDebug('APP_DEBUG');
+$detector->setErrorInfo('ERROR_INFO');
+$detector->setErrorNameLog('ERROR_NAME_LOG');
+$detector->setErrorPathLog('ERROR_PATH_LOG');
+$detector->make(function(){
+     $whoops = new \Whoops\Run;
+     $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
+     $whoops->register();
+});
+</pre>
+
+#Timing
+<pre>
+APP_DEBUG = false : max response 0.009 sec
+APP_DEBUG = true  : max response 0.014 sec (+55%)
 </pre>
