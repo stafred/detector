@@ -1,6 +1,6 @@
 {
     "name": "stafred/detector",
-    "description": "Error Detedctor",
+    "description": "Error detection and startup services",
     "license": "MIT",
     "authors": [
         {
