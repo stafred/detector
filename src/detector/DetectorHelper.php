@@ -47,24 +47,26 @@ class DetectorHelper
      * @param $errstr
      * @param $errfile
      * @param $errline
+     * @throws \Exception
      */
     final public function errorHandler($errno, $errstr, $errfile, $errline)
     {
         $this->makeLog($errstr, $errfile, $errline);
         $code = \IApp::ERROR_SERVER;
         $error = $this->getErrorInfo($errstr);
-        require_once self::ERROR_PATH;
+        $this->buffer($this->addResorce($error, $code, $errstr));
     }
 
     /**
-     * @param \Throwable $e
+     * @param \Exception $e
+     * @throws \Exception
      */
-    final public function exceptionHandler(\Throwable $e)
+    final public function exceptionHandler($e)
     {
         $this->makeLog($e->getMessage(), $e->getFile(), $e->getLine());
         $code = $e->getCode() == 0 ? \IApp::ERROR_SERVER : $e->getCode();
         $error = $this->getErrorInfo($e->getMessage());
-        require_once self::ERROR_PATH;
+        $this->buffer($this->addResorce($error, $code, $e->getMessage()));
     }
 
     /**
@@ -89,6 +91,7 @@ class DetectorHelper
      * @param string $error
      * @param string $file
      * @param int $line
+     * @throws \Exception
      */
     protected function makeLog(string $error, string $file, int $line): void
     {
@@ -156,15 +159,20 @@ class DetectorHelper
     }
 
     /**
-     * require
+     * @param $error
+     * @param $code
+     * @param $status
+     * @return mixed
      */
-    protected function addResorce()
+    protected function addResorce($error, $code, $status)
     {
-        require_once self::ERROR_PATH;
+        $this->setHeader($code, $status);
+        return require_once self::ERROR_PATH;
     }
 
     /**
      * @param string $info
+     * @param int $code
      * @return string
      */
     protected function getErrorInfo(string $info): string
@@ -192,5 +200,26 @@ class DetectorHelper
         return defined(strval($define))
             ? strval(constant($define))
             : strval($define);
+    }
+
+    /**
+     * @param $content
+     */
+    protected function buffer($content)
+    {
+        ob_start(function() use ($content){
+            return $content;
+        });
+        echo ob_get_contents();
+        ob_end_clean();
+    }
+
+    /**
+     * @param int $code
+     * @param string $statustext
+     */
+    protected function setHeader(int $code = 200, string $statustext = 'test'){
+        header("HTTP/1.1 $code", true);
+        header("StatusText: $statustext");
     }
 }

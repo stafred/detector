@@ -46,7 +46,7 @@ final class Run extends DetectorHelper
     {
         if($this->getDebug() AND !is_null($fn))
         {
-            $fn();
+			$fn();
         }
         else {
             $this->setError();
