@@ -205,7 +205,7 @@ class DetectorHelper
     /**
      * @param $content
      */
-    protected function buffer($content)
+    protected function buffer($content = 'asdasdasd')
     {
         ob_start(function() use ($content){
             return $content;
