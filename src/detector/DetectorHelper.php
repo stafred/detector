@@ -6,25 +6,8 @@ namespace Detector;
  * Class DetectorHelper
  * @package Detector
  */
-class DetectorHelper
+class DetectorHelper extends DecectorConfiguration
 {
-    /**
-     * @const string
-     */
-    const LOG_PATH = '/factory/log/error';
-    /**
-     * @const string
-     */
-    const LOG_NAME = 'error_app.log';
-    /**
-     * @const string
-     */
-    const ERROR_PATH = '../vendor/stafred/detector/src/detector/resource/error.php';
-    /**
-     * @const int
-     */
-    const ERROR_SERVER = 500;
-
     /**
      * @var bool
      */
@@ -218,8 +201,10 @@ class DetectorHelper
      * @param int $code
      * @param string $statustext
      */
-    protected function setHeader(int $code = 200, string $statustext = 'test'){
+    protected function setHeader(int $code = 200, string $debugtext = 'OK'){
         header("HTTP/1.1 $code", true);
-        header("StatusText: $statustext");
+        if(self::DEBUG_TEXT) {
+            header("DebugText: $debugtext");
+        }
     }
 }
