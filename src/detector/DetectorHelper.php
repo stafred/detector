@@ -38,6 +38,7 @@ class DetectorHelper extends DecectorConfiguration
         $code = \IApp::ERROR_SERVER;
         $error = $this->getErrorInfo($errstr);
         $this->buffer($this->addResorce($error, $code, $errstr));
+
     }
 
     /**
@@ -149,6 +150,10 @@ class DetectorHelper extends DecectorConfiguration
      */
     protected function addResorce($error, $code, $status)
     {
+        if($this->asyncError($status)) {
+            $this->asyncErrorSignal();
+            return;
+        }
         $this->setHeader($code, $status);
         return require_once self::ERROR_PATH;
     }
@@ -188,13 +193,15 @@ class DetectorHelper extends DecectorConfiguration
     /**
      * @param $content
      */
-    protected function buffer($content = 'asdasdasd')
+    protected function buffer($content = '')
     {
         ob_start(function() use ($content){
             return $content;
         });
         echo ob_get_contents();
         ob_end_clean();
+        /*улучшить работу вывода ошибок и контента*/
+        exit;
     }
 
     /**
@@ -202,9 +209,27 @@ class DetectorHelper extends DecectorConfiguration
      * @param string $statustext
      */
     protected function setHeader(int $code = 200, string $debugtext = 'OK'){
-        header("HTTP/1.1 $code", true);
+        //header("HTTP/1.1 $code", true);
         if(self::DEBUG_TEXT) {
             header("DebugText: $debugtext");
         }
+    }
+
+    protected function asyncError($error)
+    {
+        $host = env("async.host");
+        $port = env("async.port");
+        return preg_match("/^stream_socket_client[^\/]+\/\/$host:$port/", $error);
+    }
+
+    protected function asyncErrorSignal()
+    {
+        header("LOCATION: " . $_SERVER["REQUEST_URI"]);
+        file_put_contents(
+            dirname(__DIR__, 5) .
+            "/" . env("async.shutdown"),
+            NULL
+        );
+        die;
     }
 }
